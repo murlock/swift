@@ -3,6 +3,7 @@
 set -e
 
 export TEST_SUITE="${TEST_SUITE:-$1}"
+export CONFIGURATION=${CONFIGURATION:-s3-default.cfg}
 
 if [ "$TEST_SUITE" = "unit" ]
 then

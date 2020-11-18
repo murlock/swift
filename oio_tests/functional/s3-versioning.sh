@@ -103,7 +103,7 @@ OBJ_1_ISLATEST=$(jq -r ".Versions[0].IsLatest|tostring" <<< "$ALL_OBJ_VERS")
 # because the 2 objects are created before versioning is enabled.
 if [[ ("$OBJ_0_ID" != "null") || ("$OBJ_1_ID" != "null") ]]
 then
-  [[ "$OBJ_0_ID" -lt "$OBJ_1_ID" ]]
+  [[ "$OBJ_0_ID" < "$OBJ_1_ID" ]]
 fi
 
 [[ "$OBJ_1_MD5" == "\"$OBJ_1_EXPECTED_MD5\"" ]]
@@ -163,7 +163,7 @@ OBJ_2_ISLATEST=$(jq -r ".Versions[0].IsLatest|tostring" <<< "$ALL_OBJ_VERS")
 OBJ_1_EXPECTED_ID="$OBJ_1_ID"
 if [[ ("$OBJ_0_ID" != "null") || ("$OBJ_1_ID" != "null") ]]
 then
-  [[ "$OBJ_1_ID" -lt "$OBJ_2_ID" ]]
+  [[ "$OBJ_1_ID" < "$OBJ_2_ID" ]]
 fi
 [[ "$OBJ_1_MD5" == "\"$OBJ_1_EXPECTED_MD5\"" ]]
 [[ "$OBJ_2_MD5" == "\"$OBJ_2_EXPECTED_MD5\"" ]]

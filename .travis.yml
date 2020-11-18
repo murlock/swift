@@ -15,6 +15,7 @@ env:
 #    - TEST_SUITE=s3 # Latest stable/supported versions
     - TEST_SUITE=s3 SDS_BRANCH=master # Integration with latest versions
     - TEST_SUITE=s3-basic SDS_BRANCH=master # Integration with latest versions
+    - TEST_SUITE=s3 SDS_BRANCH=master CONFIGURATION=s3-default-swift-versioning.cfg
 #    - TEST_SUITE=encryption
 #    - TEST_SUITE=encryption SDS_BRANCH=master
 #    - TEST_SUITE=swift
