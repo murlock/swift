@@ -111,14 +111,14 @@ class ContainerController(SwiftContainerController):
                 headers[k] = v
         # HACK: oio-sds always sets version numbers, so let some middlewares
         # think that versioning is always enabled.
-        if SYSMETA_VERSIONS_CONT not in headers and 'sys.user.name' in system:
-            try:
-                v_con = get_reserved_name('versions', system['sys.user.name'])
-                headers[SYSMETA_VERSIONS_CONT] = v_con
-            except ValueError:
-                # sys.user.name contains reserved characters
-                # -> this is probably a versioning container.
-                pass
+        #if SYSMETA_VERSIONS_CONT not in headers and 'sys.user.name' in system:
+        #    try:
+        #        v_con = get_reserved_name('versions', system['sys.user.name'])
+        #        headers[SYSMETA_VERSIONS_CONT] = v_con
+        #    except ValueError:
+        #        # sys.user.name contains reserved characters
+        #        # -> this is probably a versioning container.
+        #        pass
         return headers
 
     def get_container_list_resp(self, req):
@@ -262,6 +262,8 @@ class ContainerController(SwiftContainerController):
         oio_headers = {REQID_HEADER: self.trans_id}
         oio_cache = req.environ.get('oio.cache')
         perfdata = req.environ.get('swift.perfdata')
+        if 'versions' in self.container_name:
+            print("XXXX head on %s" % (self.container_name))
         meta = self.app.storage.container_get_properties(
             self.account_name, self.container_name, headers=oio_headers,
             cache=oio_cache, perfdata=perfdata)
